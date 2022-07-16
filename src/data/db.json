@@ -35,6 +35,12 @@
       "name": "Product 7",
       "price": 1000,
       "stock": 8
+    },
+    {
+      "name": "Product 678",
+      "price": "467",
+      "stock": "15",
+      "id": 8
     }
   ]
 }
