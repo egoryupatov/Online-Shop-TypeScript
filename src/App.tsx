@@ -23,7 +23,9 @@ export const App: React.FC = () => {
   а у меня массив объектов получается, поэтому не сортируется
   но как мне указать что я хочу отсортировать по одному ключу в массиве объектов?
   */
-  const sorted = products.sort((a, b) => a.price - b.price);
+  
+  //const sorted = products.sort((a, b) => a.price - b.price);
+  const sorted = [...products].sort((a, b) => a.price - b.price);
 
   const [sort, setSort] = useState(false);
 
