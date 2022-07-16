@@ -19,13 +19,9 @@ export const App: React.FC = () => {
 
   const products = useAppSelector((state) => state.products.list);
 
-  /*ошибка ниже, я понимаю что это сработало бы на массиве чисел например 1,2,3,4,5
-  а у меня массив объектов получается, поэтому не сортируется
-  но как мне указать что я хочу отсортировать по одному ключу в массиве объектов?
-  */
-  
-  //const sorted = products.sort((a, b) => a.price - b.price);
-  const sorted = [...products].sort((a, b) => a.price - b.price);
+//вот это заработало, но как сделать чтобы при повторном нажатии все возращалось?
+
+  const sorted = [...products].sort((a, b) => b.price - a.price);
 
   const [sort, setSort] = useState(false);
 
