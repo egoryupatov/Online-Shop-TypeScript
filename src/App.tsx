@@ -19,14 +19,19 @@ export const App: React.FC = () => {
 
   const products = useAppSelector((state) => state.products.list);
 
-//вот это заработало, но как сделать чтобы при повторном нажатии все возращалось?
+  //вот это заработало, но как сделать чтобы при повторном нажатии все возращалось?
 
-  const sorted = [...products].sort((a, b) => b.price - a.price);
+  const sortedUp = [...products].sort((a, b) => b.price - a.price);
+  const sortedDown = [...products].sort((a, b) => a.price - b.price);
 
   const [sort, setSort] = useState(false);
 
+  //нагуглил решение, но не понимаю приставку prev, я понимаю что это переводится как предыдущий (previous) но что это, ключевое слово?
+
   const handleSort = () => {
-    setSort(true);
+
+    setSort(prevSort => !prevSort);
+
   };
 
   return (
@@ -46,7 +51,7 @@ export const App: React.FC = () => {
 
           {!sort && (
             <tbody>
-              {products.map((product) => (
+              {sortedDown.map((product) => (
                 <tr key={product.id}>
                   <td>{product.id}</td>
                   <td>{product.name}</td>
@@ -61,7 +66,7 @@ export const App: React.FC = () => {
 
           {sort && (
             <tbody>
-              {sorted.map((product) => (
+              {sortedUp.map((product) => (
                 <tr key={product.id}>
                   <td>{product.id}</td>
                   <td>{product.name}</td>
