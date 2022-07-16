@@ -54,12 +54,8 @@ export const App: React.FC = () => {
                   <td>{product.name}</td>
                   <td>${product.price}</td>
                   <td>{product.stock}</td>
-                  <td>
-                    <Button variant="secondary">Delete</Button>
-                  </td>
-                  <td>
-                    <Button variant="secondary">Edit</Button>
-                  </td>
+                  <td><DeleteProduct id={product.id}/></td>
+                  <td><Button variant="secondary">Edit</Button></td>
                 </tr>
               ))}
             </tbody>
@@ -73,12 +69,8 @@ export const App: React.FC = () => {
                   <td>{product.name}</td>
                   <td>${product.price}</td>
                   <td>{product.stock}</td>
-                  <td>
-                    <Button variant="secondary">Delete</Button>
-                  </td>
-                  <td>
-                    <Button variant="secondary">Edit</Button>
-                  </td>
+                  <td><DeleteProduct id={product.id}/></td>
+                  <td><Button variant="secondary">Edit</Button></td>
                 </tr>
               ))}
             </tbody>
