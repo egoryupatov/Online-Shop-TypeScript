@@ -3,6 +3,8 @@ import { Table, Container, Button } from "react-bootstrap";
 import { useAppSelector, useAppDispatch } from "./store/hooks";
 import { getProducts } from "./store/productsSlice";
 import { DeleteProduct } from "./features/DeleteProduct";
+import { Link } from "react-router-dom";
+import { EditProductButton } from './features/EditProductButton';
 
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -55,7 +57,7 @@ export const App: React.FC = () => {
                   <td>${product.price}</td>
                   <td>{product.stock}</td>
                   <td><DeleteProduct id={product.id}/></td>
-                  <td><Button variant="secondary">Edit</Button></td>
+                  <td><Link to={`/edit-product/${product.id}`}><Button variant="secondary">Edit</Button></Link></td>
                 </tr>
               ))}
             </tbody>
@@ -70,7 +72,7 @@ export const App: React.FC = () => {
                   <td>${product.price}</td>
                   <td>{product.stock}</td>
                   <td><DeleteProduct id={product.id}/></td>
-                  <td><Button variant="secondary">Edit</Button></td>
+                  <td><EditProductButton id={product.id}/></td>
                 </tr>
               ))}
             </tbody>

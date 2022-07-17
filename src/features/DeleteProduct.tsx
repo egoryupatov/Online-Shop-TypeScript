@@ -10,7 +10,6 @@ export const DeleteProduct: React.FC<DeleteProductProps> = props => {
 
   const dispatch = useAppDispatch();
 
-  //мы тут эвент передаем в аргумент только для того чтобы превент дефолт вызвать?
   const handleDelete = (event: any) => {
 
     event.preventDefault()
