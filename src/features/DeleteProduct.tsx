@@ -10,6 +10,8 @@ export const DeleteProduct: React.FC<DeleteProductProps> = props => {
 
   const dispatch = useAppDispatch();
 
+    //исправить на правильный эвент
+    
   const handleDelete = (event: any) => {
 
     event.preventDefault()

@@ -20,7 +20,7 @@ root.render(
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/add-product" element={<AddProduct />} />
-          <Route path="/edit-product:id" element={<EditProduct />} />
+          <Route path="/edit/:id" element={<EditProduct />} />
         </Routes>
       </Provider>
     </BrowserRouter>

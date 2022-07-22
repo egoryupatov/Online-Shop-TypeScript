@@ -2,9 +2,7 @@ import { useEffect, useState } from "react";
 import { Table, Container, Button } from "react-bootstrap";
 import { useAppSelector, useAppDispatch } from "./store/hooks";
 import { getProducts } from "./store/productsSlice";
-import { DeleteProduct } from "./features/DeleteProduct";
-import { Link } from "react-router-dom";
-import { EditProductButton } from './features/EditProductButton';
+import { SortedList } from "./features/SortedList";
 
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -21,16 +19,12 @@ export const App: React.FC = () => {
 
   const products = useAppSelector((state) => state.products.list);
 
-   const sortedUp = [...products].sort((a, b) => b.price - a.price);
+  const sortedUp = [...products].sort((a, b) => b.price - a.price);
 
   const [sort, setSort] = useState(false);
 
-  //не понимаю приставку prev, я понимаю что это переводится как предыдущий (previous) но что это, ключевое слово?
-
   const handleSort = () => {
-
-    setSort(prevSort => !prevSort);
-
+    setSort((prevSort) => !prevSort);
   };
 
   return (
@@ -48,37 +42,12 @@ export const App: React.FC = () => {
             </tr>
           </thead>
 
-          {!sort && (
-            <tbody>
-              {products.map((product) => (
-                <tr key={product.id}>
-                  <td>{product.id}</td>
-                  <td>{product.name}</td>
-                  <td>${product.price}</td>
-                  <td>{product.stock}</td>
-                  <td><DeleteProduct id={product.id}/></td>
-                  <td><Link to={`/edit-product/${product.id}`}><Button variant="secondary">Edit</Button></Link></td>
-                </tr>
-              ))}
-            </tbody>
-          )}
-
-          {sort && (
-            <tbody>
-              {sortedUp.map((product) => (
-                <tr key={product.id}>
-                  <td>{product.id}</td>
-                  <td>{product.name}</td>
-                  <td>${product.price}</td>
-                  <td>{product.stock}</td>
-                  <td><DeleteProduct id={product.id}/></td>
-                  <td><EditProductButton id={product.id}/></td>
-                </tr>
-              ))}
-            </tbody>
-          )}
+          {!sort && <SortedList products={products} />}
+          {sort && <SortedList products={sortedUp} />}
         </Table>
-        <Button variant="secondary" onClick={handleSort}>Sort by price</Button>
+        <Button variant="secondary" onClick={handleSort}>
+          Sort by price
+        </Button>
       </Container>
     </div>
   );

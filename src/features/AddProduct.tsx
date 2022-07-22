@@ -18,18 +18,20 @@ export const AddProduct: React.FC = () => {
     stock: "",
   });
 
-  const handleProductName = (event: any) => {
+  const handleProductName = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInput({ ...input, name: event.target.value });
   };
 
-  const handleProductPrice = (event: any) => {
+  const handleProductPrice = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInput({ ...input, price: event.target.value });
   };
 
-  const handleProductStock = (event: any) => {
+  const handleProductStock = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInput({ ...input, stock: event.target.value });
   };
 
+  //исправить на правильный эвент
+  
   const handleAddingProduct = (event: any) => {
     
     event.preventDefault()
