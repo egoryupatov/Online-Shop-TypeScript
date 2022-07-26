@@ -2,22 +2,23 @@ import { Container, Form, Button } from "react-bootstrap";
 import { useAppDispatch, useAppSelector } from "./../store/hooks";
 import { editProduct } from "../store/productsSlice";
 import { useState } from "react";
-
-interface EditedProductProps {
-  id: number;
-}
+import { useParams } from "react-router-dom";
 
 interface inputInterface {
+
   name: string;
   price: string;
   stock: string;
+
 }
 
-export const EditProduct: React.FC<EditedProductProps> = (props) => {
+export const EditProduct: React.FC = () => {
+
   const dispatch = useAppDispatch();
+  const params = useParams();  
 
   const products = useAppSelector((state) => state.products.list);
-  const editedProduct = products.find((product) => product.id === props.id);
+  const editedProduct = products.find((product) => product.id == Number(params.id));
 
   const [input, setInput] = useState<inputInterface>({
     name: "",
@@ -37,10 +38,7 @@ export const EditProduct: React.FC<EditedProductProps> = (props) => {
     setInput({ ...input, stock: event.target.value });
   };
 
-  //исправить на правильный эвент
-
-  const handleEdit = (event: any) => {
-    event.preventDefault();
+  const handleEdit = () => {
 
     const options = {
       method: "PUT",
@@ -50,7 +48,7 @@ export const EditProduct: React.FC<EditedProductProps> = (props) => {
       body: JSON.stringify(input),
     };
 
-    fetch(`http://localhost:3000/products/${props.id}`, options)
+    fetch(`http://localhost:3000/products/${params.id}`, options)
       .then((response) => {
         return response.json();
       })
@@ -89,7 +87,7 @@ export const EditProduct: React.FC<EditedProductProps> = (props) => {
         </Form.Group>
 
         <Button variant="secondary" type="submit" onClick={handleEdit}>
-          Add a product
+          Submit edits
         </Button>
       </Form>
     </Container>
