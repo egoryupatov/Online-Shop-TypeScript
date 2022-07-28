@@ -11,8 +11,8 @@ export const AddProductContainer: React.FC = () => {
 
   const [productInfo, setProductInfo] = useState<PartialProduct>({
     name: "",
-    price: "0",
-    stock: "0",
+    price: "",
+    stock: "",
   });
 
   const handleProductNameChange = (name: string) => {
@@ -27,8 +27,10 @@ export const AddProductContainer: React.FC = () => {
     setProductInfo({ ...productInfo, stock });
   };
 
+  // добавление продукта не срабатывает
+
   const handleAddingProduct = () => {
-    createProductApi({input: productInfo }).then((productInfo) => {
+    createProductApi({ input: productInfo }).then((productInfo) => {
       dispatch(addProductAction(productInfo));
     });
   };

@@ -14,10 +14,15 @@ export const EditProductContainer: React.FC = () => {
   const products = useAppSelector((state) => state.products.list);
   const editedProduct = products.find((product) => product.id === Number(params.id));
 
+  /*почему дает прописать переменную только со знаком вопроса? в интерфейсе нет
+  условия что он может быть undefined*/
+
+  //при обновлении страницы все данные вызванные перменной editedProduct исчезают, что делать
+
   const [productInfo, setProductInfo] = useState<PartialProduct>({
-    name: "",
-    price: "",
-    stock: "",
+    name: `${editedProduct?.name}`,
+    price: `${editedProduct?.price}`,
+    stock: `${editedProduct?.stock}`,
   });
 
   const handleProductNameEdit = (name: string) => {
@@ -44,6 +49,7 @@ export const EditProductContainer: React.FC = () => {
       productName={productInfo.name}
       productPrice={productInfo.price}
       productStock={productInfo.stock}
+      heading={editedProduct?.name}
       onProductNameChange={handleProductNameEdit}
       onProductPriceChange={handleProductPriceEdit}
       onProductStockChange={handleProductStockEdit}
