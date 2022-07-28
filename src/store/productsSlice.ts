@@ -3,8 +3,8 @@ import { RootState } from './store';
 
 export interface Product {
   name: string;
-  price: number;
-  stock: number;
+  price: string;
+  stock: string;
   id: number;
 }
 
@@ -20,18 +20,18 @@ export const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    getProducts: (state, action: PayloadAction<[]>) => {
+    getProductsAction: (state, action: PayloadAction<[]>) => {
       state.list = action.payload;
     },
-    addProduct: (state, action: PayloadAction<Product>) => {
+    addProductAction: (state, action: PayloadAction<Product>) => {
       state.list.push(action.payload);
     },
-    removeProduct: (state, action: PayloadAction<number>) => {
+    removeProductAction: (state, action: PayloadAction<number>) => {
       state.list = state.list.filter(
         (product) => product.id !== action.payload
       );
     },
-    editProduct: (state, action: PayloadAction<Product>) => {
+    editProductAction: (state, action: PayloadAction<Product>) => {
       state.list = state.list.map((product) => {
         if (product.id === action.payload.id) {
           return action.payload;
@@ -43,7 +43,7 @@ export const productsSlice = createSlice({
   },
 });
 
-export const { getProducts, addProduct, removeProduct, editProduct } = productsSlice.actions;
+export const { getProductsAction, addProductAction, removeProductAction, editProductAction } = productsSlice.actions;
 
 export const selectProducts = (state: RootState) => state.products.list
 

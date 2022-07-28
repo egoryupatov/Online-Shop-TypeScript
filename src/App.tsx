@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Table, Container, Button } from "react-bootstrap";
 import { useAppSelector, useAppDispatch } from "./store/hooks";
-import { getProducts } from "./store/productsSlice";
+import { getProductsAction } from "./store/productsSlice";
 import { SortedList } from "./features/SortedList";
 
 export const App: React.FC = () => {
@@ -13,13 +13,13 @@ export const App: React.FC = () => {
         return response.json();
       })
       .then((data) => {
-        dispatch(getProducts(data));
+        dispatch(getProductsAction(data));
       });
   }, []);
 
   const products = useAppSelector((state) => state.products.list);
 
-  const sortedUp = [...products].sort((a, b) => b.price - a.price);
+  const sortedUp = [...products].sort((a, b) => Number(b.price) - Number(a.price));
 
   const [sort, setSort] = useState(false);
 

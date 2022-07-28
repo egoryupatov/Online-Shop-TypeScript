@@ -5,7 +5,7 @@ import { store } from "./store/store";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { App } from "./App";
 import { Menu } from "./layout/Menu";
-import { AddProduct } from "./features/AddProduct";
+import { AddProductContainer } from "./screens/add-product/AddProductContainer";
 import { EditProduct } from "./features/EditProduct";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -19,7 +19,7 @@ root.render(
         <Menu />
         <Routes>
           <Route path="/" element={<App />} />
-          <Route path="/add-product" element={<AddProduct />} />
+          <Route path="/add-product" element={<AddProductContainer />} />
           <Route path="/edit/:id" element={<EditProduct />} />
         </Routes>
       </Provider>

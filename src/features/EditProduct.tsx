@@ -1,10 +1,10 @@
 import { Container, Form, Button } from "react-bootstrap";
-import { useAppDispatch, useAppSelector } from "./../store/hooks";
-import { editProduct } from "../store/productsSlice";
-import { useState } from "react";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import {editProductAction} from "../store/productsSlice";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 
-interface inputInterface {
+interface InputInterface {
 
   name: string;
   price: string;
@@ -18,9 +18,9 @@ export const EditProduct: React.FC = () => {
   const params = useParams();  
 
   const products = useAppSelector((state) => state.products.list);
-  const editedProduct = products.find((product) => product.id == Number(params.id));
+  const editedProduct = products.find((product) => product.id === Number(params.id));
 
-  const [input, setInput] = useState<inputInterface>({
+  const [input, setInput] = useState<InputInterface>({
     name: "",
     price: "",
     stock: "",
@@ -53,7 +53,7 @@ export const EditProduct: React.FC = () => {
         return response.json();
       })
       .then((input) => {
-        dispatch(editProduct(input));
+        dispatch(editProductAction(input));
       });
   };
 
