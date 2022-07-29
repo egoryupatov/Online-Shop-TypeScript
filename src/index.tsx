@@ -7,8 +7,8 @@ import { App } from "./App";
 import { Menu } from "./layout/Menu";
 import { AddProductContainer } from "./screens/add-product/AddProductContainer";
 import { EditProductContainer } from "./screens/edit-product/EditProductContainer";
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+import "bootstrap/dist/css/bootstrap.min.css";
+import { DataLoader } from "./DataLoader";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
@@ -18,11 +18,13 @@ root.render(
     <BrowserRouter>
       <Provider store={store}>
         <Menu />
-        <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="/add-product" element={<AddProductContainer />} />
-          <Route path="/edit/:id" element={<EditProductContainer />} />
-        </Routes>
+        <DataLoader>
+          <Routes>
+            <Route path="/" element={<App />} />
+            <Route path="/add-product" element={<AddProductContainer />} />
+            <Route path="/edit/:id" element={<EditProductContainer />} />
+          </Routes>
+        </DataLoader>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>

@@ -7,16 +7,6 @@ import { SortedList } from "./features/SortedList";
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    fetch("http://localhost:3000/products/")
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        dispatch(getProductsAction(data));
-      });
-  }, []);
-
   const products = useAppSelector((state) => state.products.list);
 
   const sortedUp = [...products].sort((a, b) => Number(b.price) - Number(a.price));

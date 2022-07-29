@@ -1,4 +1,4 @@
-import { DeleteProduct } from "./DeleteProduct";
+import { DeleteProduct } from "../screens/delete-product/DeleteProduct";
 import { EditProductButton } from "./EditProductButton";
 import { Product } from "./../store/productsSlice";
 

@@ -6,27 +6,27 @@ const headers = {
   "Content-Type": "application/json",
 };
 
-interface getProductsParams {
-  input: Product[];
+interface GetProductsApiParams {
+  products: Product[];
 }
 
-interface createProductParams {
+interface CreateProductApiParams {
   input: PartialProduct;
 }
 
-interface editProductParams {
+interface EditProductApiParams {
   input: PartialProduct;
 }
 
-interface deleteProductParams {
-  input: number;
+interface DeleteProductApiParams {
+  productId: number;
 }
 
-export const getProductsApi = (params: getProductsParams): Promise<Product> => {
+export const getProductsApi = (params: GetProductsApiParams): Promise<Product> => {
   const options = {
     method: "GET",
     headers,
-    body: JSON.stringify(params.input),
+    body: JSON.stringify(params.products),
   };
 
   return fetch(`${BASE_API_URL}/products/`, options).then((response) => {
@@ -34,7 +34,7 @@ export const getProductsApi = (params: getProductsParams): Promise<Product> => {
   });
 };
 
-export const createProductApi = (params: createProductParams): Promise<Product> => {
+export const createProductApi = (params: CreateProductApiParams): Promise<Product> => {
   const options = {
     method: "POST",
     headers,
@@ -46,7 +46,7 @@ export const createProductApi = (params: createProductParams): Promise<Product> 
   });
 };
 
-export const editProductApi = (params: editProductParams): Promise<Product> => {
+export const editProductApi = (params: EditProductApiParams): Promise<Product> => {
   const options = {
     method: "PUT",
     headers,
@@ -58,14 +58,12 @@ export const editProductApi = (params: editProductParams): Promise<Product> => {
   });
 };
 
-export const deleteProductApi = (params: deleteProductParams) => {
+export const deleteProductApi = (params: DeleteProductApiParams) => {
   const options = {
     method: "DELETE",
     headers,
-    body: JSON.stringify(params.input),
+    body: JSON.stringify(params.productId),
   };
-
-  //как мне передать айди продукта в этот файл? хук юс парамс тут не работает, пропс я не могу передать
 
   return fetch(`${BASE_API_URL}/products/${params}`, options).then(
     (response) => {
