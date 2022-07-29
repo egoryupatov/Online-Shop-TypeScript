@@ -1,12 +1,15 @@
 # CRUD-example
 
-## Step 1: Lauch a server
+Follow the steps below to launch the app.
 
-- cd src
-- cd data
-- json-server --watch db.json
+## Step 1: Launch the server
 
+``` 
+npm run dataServer
+```
 
-## Step 2: Lauch the app
+## Step 2: Launch the app
 
-- npm start
+``` 
+npm start
+```
