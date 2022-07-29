@@ -16,10 +16,10 @@ export const SortedList: React.FC<SortedListProps> = (props) => {
           <td>${product.price}</td>
           <td>{product.stock}</td>
           <td>
-            <DeleteProduct id={product.id} />
+            <DeleteProduct productId={product.id} />
           </td>
           <td>
-            <EditProductButton id={product.id} />
+            <EditProductButton productId={product.id} />
           </td>
         </tr>
       ))}
