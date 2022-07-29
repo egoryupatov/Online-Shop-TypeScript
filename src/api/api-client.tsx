@@ -7,7 +7,7 @@ const headers = {
 };
 
 interface getProductsParams {
-  input: [{}];
+  input: Product[];
 }
 
 interface createProductParams {
@@ -22,7 +22,7 @@ interface deleteProductParams {
   input: number;
 }
 
-export const getProductsApi = (params: getProductsParams) => {
+export const getProductsApi = (params: getProductsParams): Promise<Product> => {
   const options = {
     method: "GET",
     headers,
@@ -58,8 +58,6 @@ export const editProductApi = (params: editProductParams): Promise<Product> => {
   });
 };
 
-
-
 export const deleteProductApi = (params: deleteProductParams) => {
   const options = {
     method: "DELETE",
@@ -69,7 +67,9 @@ export const deleteProductApi = (params: deleteProductParams) => {
 
   //как мне передать айди продукта в этот файл? хук юс парамс тут не работает, пропс я не могу передать
 
-  return fetch(`${BASE_API_URL}/products/${params}`, options).then((response) => {
-    return response.json();
-  });
+  return fetch(`${BASE_API_URL}/products/${params}`, options).then(
+    (response) => {
+      return response.json();
+    }
+  );
 };
